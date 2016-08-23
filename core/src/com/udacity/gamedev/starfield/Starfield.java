@@ -7,6 +7,8 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 
+import java.util.Random;
+
 /**
  * TODO: Start here!
  *
@@ -53,6 +55,12 @@ public class Starfield extends ApplicationAdapter {
         stars = new Array<Vector2>(numStars);
 
         // TODO: Use java.util.Random to fill the array of star positions
+        Random random = new Random();
+        for (int i = 0; i < numStars; i++){
+            int x = random.nextInt(Gdx.graphics.getWidth());
+            int y = random.nextInt(Gdx.graphics.getHeight());
+            stars.add(new Vector2(x, y));
+        }
 
     }
 
@@ -69,18 +77,21 @@ public class Starfield extends ApplicationAdapter {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         // TODO: Begin a shapeRenderer batch using ShapeType.Point
-        shapeRenderer.point(1,2,0);
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Point);
 
         // TODO: Loop through the star positions and use shapeRenderer to draw points
+        for (Vector2 star : stars){
+            shapeRenderer.point(star.x, star.y, 0);
+        }
 
         // TODO: End the shapeRenderer batch
-
+        shapeRenderer.end();
     }
 
     @Override
     public void dispose() {
         // TODO: Dispose of our ShapeRenderer
-
+        shapeRenderer.dispose();
         super.dispose();
     }
 }
