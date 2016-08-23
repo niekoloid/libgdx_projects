@@ -42,14 +42,15 @@ public class Starfield extends ApplicationAdapter {
         // TODO: Initialize a shapeRenderer
 
         // TODO: Call initStars
-        float density = 1;
-        initStars(density);
+        initStars(STAR_DENSITY);
     }
 
     public void initStars(float density) {
         // TODO: Figure out how many stars to draw. You'll need the screen dimensions, which you can get using Gdx.graphics.getWidth() and Gdx.graphics.getHeight().
+        int numStars = (int)(Gdx.graphics.getWidth() * Gdx.graphics.getHeight() * density);
 
         // TODO: Create a new array of Vector2's to hold the star positions
+        stars = new Array<Vector2>(numStars);
 
         // TODO: Use java.util.Random to fill the array of star positions
 
@@ -64,10 +65,11 @@ public class Starfield extends ApplicationAdapter {
     @Override
     public void render() {
         // TODO: Make the night sky black
-        Gdx.gl.glClearColor(1, 0, 0, 1);
+        Gdx.gl.glClearColor(0, 0, 0, 0);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         // TODO: Begin a shapeRenderer batch using ShapeType.Point
+        shapeRenderer.point(1,2,0);
 
         // TODO: Loop through the star positions and use shapeRenderer to draw points
 
